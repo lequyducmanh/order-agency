@@ -1,6 +1,7 @@
 
 body.bg-gradient-primary {
-	background: linear-gradient(135deg, #eaf3ff 0%, #f8fafc 100%);
+	/* Ombre trắng chủ đạo, loang xanh nhạt và tím nhạt phía dưới */
+	background: radial-gradient(ellipse 80% 60% at 50% 80%, #e3f2fd 0%, #f3e7fe 60%, #fff 100%) #fff;
 	min-height: 100vh;
 }
 .app-header {
@@ -44,10 +45,12 @@ body.bg-gradient-primary {
 	border-radius: 1.5rem !important;
 }
 .app-bottom-nav {
-	border-top-left-radius: 1.5rem;
-	border-top-right-radius: 1.5rem;
-	box-shadow: 0 -2px 16px rgba(79,140,255,0.08);
+	border-top-left-radius: 2rem !important;
+	border-top-right-radius: 2rem !important;
+	box-shadow: 0 -4px 24px 0 rgba(79,140,255,0.16), 0 -1px 8px 0 rgba(0,0,0,0.10) !important;
 	z-index: 100;
+	overflow: hidden;
+	background: #fff;
 }
 /* Default: inactive = gray, active = blue */
 .app-bottom-nav .nav-link {
@@ -125,8 +128,12 @@ body.bg-gradient-primary {
 
 /* Category menu styling */
 .category-menu {
-	/* ensure the right chevron (overlay) sits above the scroll area */
 	position: relative;
+	border-top-left-radius: 2rem;
+	border-top-right-radius: 2rem;
+	overflow: hidden;
+	box-shadow: 0 2px 16px 0 rgba(79,140,255,0.10), 0 1px 8px 0 rgba(0,0,0,0.04);
+	background: rgba(255,255,255,0.85);
 }
 .category-menu .category-scroll {
 	-webkit-overflow-scrolling: touch;
