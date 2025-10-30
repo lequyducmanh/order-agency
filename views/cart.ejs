@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ hàng - Candy Agency</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-gradient-primary">
+  <header class="app-header shadow-sm rounded-bottom">
+    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+      <div class="d-flex align-items-center gap-2">
+        <span class="logo-icon">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#4F8CFF"/><path d="M7 17l5-9 5 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="fw-bold fs-5 text-primary">Candy Agency</span>
+      </div>
+      <a href="/" class="btn btn-light rounded-circle shadow-sm" title="Quay lại">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </header>
+  <main class="container py-3">
+    <div class="card shadow-sm rounded-4 p-3 mb-4">
+      <h4 class="mb-3 text-primary">Giỏ hàng của bạn</h4>
+      <ul id="cartPageItems" class="list-group mb-2"></ul>
+      <div class="mb-2 d-flex justify-content-between align-items-center">
+        <div class="fw-bold fs-5 text-end" id="cartTotal"></div>
+        <button id="cartSubmitOrderBtn" class="btn btn-primary px-4 py-2 rounded-3">Đặt hàng</button>
+      </div>
+      <div id="cartOrderResult" class="mt-2"></div>
+    </div>
+  </main>
+  <nav class="app-bottom-nav navbar fixed-bottom bg-white shadow-sm rounded-top">
+    <div class="container d-flex justify-content-between align-items-center py-2">
+      <a href="/" class="nav-link text-center flex-fill" id="navHome">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="small">Tổng quan</div>
+      </a>
+      <a href="/cart" class="nav-link text-center flex-fill" id="navCart">
+        <span class="position-relative d-inline-block">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-13z" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1" fill="#4F8CFF"/><circle cx="18" cy="20" r="1" fill="#4F8CFF"/></svg>
+          <span id="cartPageBadge" class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+        </span>
+        <div class="small">Giỏ hàng</div>
+      </a>
+      <a href="#" class="nav-link text-center flex-fill" id="navMore" data-bs-toggle="offcanvas" data-bs-target="#moreOffcanvas" aria-controls="moreOffcanvas" role="button">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#4F8CFF" stroke-width="2"/><path d="M12 8v4l3 2" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="small">Nhiều hơn</div>
+      </a>
+      <script>
+        // Active menu highlight
+        const path = window.location.pathname;
+        if (path === '/' || path === '/customer') {
+          document.getElementById('navHome').classList.add('active');
+        } else if (path === '/cart') {
+          document.getElementById('navCart').classList.add('active');
+        } else {
+          document.getElementById('navMore').classList.add('active');
+        }
+      </script>
+    </div>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/cart.js"></script>
+  <!-- Offcanvas for 'Nhiều hơn' (bottom) -->
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="moreOffcanvas" aria-labelledby="moreOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 id="moreOffcanvasLabel" class="offcanvas-title">Nhiều hơn</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+    </div>
+    <div class="offcanvas-body small">
+      <div class="mb-2">
+        <button id="moreLogoutBtn" class="btn btn-outline-danger w-100 mb-2">Đăng xuất</button>
+        <button id="moreEditInfoBtn" class="btn btn-outline-primary w-100">Chỉnh sửa thông tin</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

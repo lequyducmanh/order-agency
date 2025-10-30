@@ -1,0 +1,204 @@
+
+body.bg-gradient-primary {
+	background: linear-gradient(135deg, #eaf3ff 0%, #f8fafc 100%);
+	min-height: 100vh;
+}
+.app-header {
+	background: linear-gradient(90deg, #eaf3ff 60%, #f8fafc 100%);
+	border-bottom: 1px solid #e0e7ef;
+}
+.logo-icon {
+	display: inline-block;
+	vertical-align: middle;
+}
+.card {
+	border-radius: 1.5rem !important;
+	border: none;
+}
+.product-card .card-img-top {
+	object-fit: cover;
+	height: 140px;
+	background: #eaf3ff;
+}
+.btn-success {
+	background: linear-gradient(90deg, #4F8CFF 60%, #28a745 100%);
+	border: none;
+	color: #fff;
+	font-weight: 500;
+}
+.btn-success:hover {
+	background: #28a745;
+}
+.btn-outline-danger {
+	border-radius: 1rem;
+}
+.btn-primary {
+	background: linear-gradient(90deg, #4F8CFF 60%, #3b82f6 100%);
+	border: none;
+	font-weight: 500;
+}
+.btn-primary:hover {
+	background: #2563eb;
+}
+.rounded-4 {
+	border-radius: 1.5rem !important;
+}
+.app-bottom-nav {
+	border-top-left-radius: 1.5rem;
+	border-top-right-radius: 1.5rem;
+	box-shadow: 0 -2px 16px rgba(79,140,255,0.08);
+	z-index: 100;
+}
+/* Default: inactive = gray, active = blue */
+.app-bottom-nav .nav-link {
+	color: #a0aec0; /* inactive gray */
+	font-weight: 500;
+	padding: 0.5rem 0;
+}
+.app-bottom-nav .nav-link.active {
+	color: #2563eb; /* active blue */
+}
+/* Force SVG strokes/fills to follow current text color */
+.app-bottom-nav .nav-link svg path,
+.app-bottom-nav .nav-link svg circle,
+.app-bottom-nav .nav-link svg rect {
+	stroke: currentColor !important;
+	fill: none !important;
+}
+.app-bottom-nav .nav-link svg {
+	display: block;
+	margin: 0 auto 2px;
+}
+
+/* Badge default hidden, JS will show when count > 0 */
+.cart-badge {
+	display: none;
+}
+.list-group-item {
+	border-radius: 0.75rem;
+	margin-bottom: 4px;
+}
+.fw-bold.text-end {
+	font-size: 1.1rem;
+}
+@media (max-width: 600px) {
+	.container, .card {
+		padding-left: 0.5rem !important;
+		padding-right: 0.5rem !important;
+	}
+	.app-header {
+		padding-left: 0.5rem !important;
+		padding-right: 0.5rem !important;
+	}
+	.rounded-4 {
+		border-radius: 1rem !important;
+	}
+	.product-card .card-img-top {
+		height: 110px;
+	}
+	.row.g-3 > .col-6 {
+		flex: 0 0 50%;
+		max-width: 50%;
+		padding-left: 0.25rem;
+		padding-right: 0.25rem;
+	}
+}
+
+/* Carousel styling for overview banners */
+.carousel-inner img {
+	object-fit: cover;
+	height: 220px; /* mobile-friendly default */
+}
+
+@media (min-width: 768px) {
+	.carousel-inner img {
+		height: 360px;
+	}
+}
+
+.carousel-caption h5 {
+	text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+}
+.carousel-caption p {
+	text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* Category menu styling */
+.category-menu {
+	/* ensure the right chevron (overlay) sits above the scroll area */
+	position: relative;
+}
+.category-menu .category-scroll {
+	-webkit-overflow-scrolling: touch;
+	padding-right: 44px; /* space for the chevron overlay */
+}
+.category-menu .category-btn {
+	appearance: none;
+	-webkit-appearance: none;
+	background: transparent;
+	border: none;
+	color: #6b7280; /* neutral gray */
+	font-weight: 600;
+	white-space: nowrap;
+	padding: 6px 8px;
+	display: inline-block;
+	font-size: 0.95rem;
+	border-bottom: 3px solid transparent;
+	transition: color .15s ease, border-color .15s ease;
+}
+.category-menu .category-btn:focus {
+	outline: none;
+}
+.category-menu .category-btn.active {
+	color: #e53935; /* active red */
+	border-bottom-color: #e53935;
+}
+.category-menu .category-more {
+	position: absolute;
+	right: 8px;
+	top: 50%;
+	transform: translateY(-50%);
+	pointer-events: none; /* allow touch/scroll to pass through */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 70%);
+}
+.category-menu .category-more svg path {
+	stroke: #6b7280;
+}
+
+/* Horizontal section scroll for category strips */
+.product-mini {
+	width: 100%;
+}
+.product-mini .card-body {
+	padding: 8px;
+}
+.product-mini .card-img-top {
+	height: 90px;
+	object-fit: cover;
+	border-top-left-radius: .75rem;
+	border-top-right-radius: .75rem;
+}
+.see-more-btn {
+	text-decoration: none;
+}
+
+/* Reserve space for the fixed bottom navigation so it doesn't cover page content */
+:root {
+	--bottom-nav-height: 68px; /* tune if navbar height changes */
+}
+
+main.container {
+	/* ensure content is scrolled above the fixed bottom nav */
+	padding-bottom: calc(var(--bottom-nav-height) + 1rem);
+}
+
+@media (min-width: 768px) {
+	main.container {
+		padding-bottom: calc(var(--bottom-nav-height) + 0.75rem);
+	}
+}

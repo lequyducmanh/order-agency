@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhập thông tin khách hàng - Candy Agency</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-gradient-primary">
+  <header class="app-header shadow-sm rounded-bottom">
+    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+      <div class="d-flex align-items-center gap-2">
+        <span class="logo-icon">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#4F8CFF"/><path d="M7 17l5-9 5 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="fw-bold fs-5 text-primary">Candy Agency</span>
+      </div>
+      <a href="/" class="btn btn-light rounded-circle shadow-sm" title="Quay lại">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </header>
+  <main class="container py-3">
+    <!-- Top carousel overview banners (same as overview) -->
+    <div id="overviewCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#overviewCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#overviewCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#overviewCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner rounded-3 overflow-hidden">
+        <div class="carousel-item active">
+          <img src="https://picsum.photos/1200/400?random=101" class="d-block w-100" alt="Banner 1">
+          <div class="carousel-caption d-none d-md-block text-start">
+            <h5>Khuyến mãi mùa lễ hội</h5>
+            <p>Giảm giá đến 30% cho các đơn hàng đại lý lớn.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://picsum.photos/1200/400?random=102" class="d-block w-100" alt="Banner 2">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Sản phẩm mới</h5>
+            <p>Thử ngay bánh kẹo hương vị giới hạn của chúng tôi.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://picsum.photos/1200/400?random=103" class="d-block w-100" alt="Banner 3">
+          <div class="carousel-caption d-none d-md-block text-end">
+            <h5>Giao hàng nhanh</h5>
+            <p>Hỗ trợ giao hàng toàn quốc cho đại lý.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#overviewCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#overviewCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="card shadow-sm rounded-4 p-3 mb-4">
+      <h4 class="mb-3 text-center text-primary">Nhập thông tin khách hàng</h4>
+      <form id="customerInfoFormPage" class="mb-2">
+        <div class="mb-2">
+          <input type="text" class="form-control rounded-3" name="customerName" placeholder="Tên khách hàng" required>
+        </div>
+        <div class="mb-2">
+          <input type="text" class="form-control rounded-3" name="customerPhone" placeholder="Số điện thoại" required>
+        </div>
+        <div class="mb-2">
+          <input type="text" class="form-control rounded-3" name="customerAddress" placeholder="Địa chỉ" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 rounded-3">Lưu và tiếp tục</button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </main>
+  <script>
+    // Save customer info to localStorage then redirect to home
+    document.getElementById('customerInfoFormPage').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const info = {
+        customerName: this.customerName.value,
+        customerPhone: this.customerPhone.value,
+        customerAddress: this.customerAddress.value
+      };
+      try { localStorage.setItem('customerInfo', JSON.stringify(info)); } catch (err) {}
+      window.location.href = '/';
+    });
+  </script>
+</body>
+</html>

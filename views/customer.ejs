@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đại lý bánh kẹo - Khách hàng</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-gradient-primary">
+  <header class="app-header shadow-sm rounded-bottom">
+    <div class="d-flex align-items-center justify-content-between px-3 py-2">
+      <div class="d-flex align-items-center gap-2">
+        <span class="logo-icon">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#4F8CFF"/><path d="M7 17l5-9 5 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="fw-bold fs-5 text-primary">Candy Agency</span>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span id="currentTime" class="text-secondary small"></span>
+        <span class="ms-1">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#EAF3FF"/><path d="M12 8v4l3 2" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </div>
+  </header>
+  <main class="container py-3">
+    <!-- Top carousel overview banners -->
+    <div id="overviewCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#overviewCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#overviewCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#overviewCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner rounded-3 overflow-hidden">
+          <div class="carousel-item active">
+            <img src="https://picsum.photos/1200/400?random=101" class="d-block w-100" alt="Banner 1">
+            <div class="carousel-caption d-none d-md-block text-start">
+              <h5>Khuyến mãi mùa lễ hội</h5>
+              <p>Giảm giá đến 30% cho các đơn hàng đại lý lớn.</p>
+              <p id="carouselGreeting" class="lead d-none">Xin chào!</p>
+            </div>
+          </div>
+        <div class="carousel-item">
+          <img src="https://picsum.photos/1200/400?random=102" class="d-block w-100" alt="Banner 2">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Sản phẩm mới</h5>
+            <p>Thử ngay bánh kẹo hương vị giới hạn của chúng tôi.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://picsum.photos/1200/400?random=103" class="d-block w-100" alt="Banner 3">
+          <div class="carousel-caption d-none d-md-block text-end">
+            <h5>Giao hàng nhanh</h5>
+            <p>Hỗ trợ giao hàng toàn quốc cho đại lý.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#overviewCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#overviewCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+
+    <!-- Customer info moved to separate page /customer-info -->
+    <div id="shopSection">
+      <!-- Logout moved to 'Nhiều hơn' offcanvas (bottom) -->
+      <div class="card shadow-sm rounded-4 p-3 mb-4">
+  <h4 class="mb-3 text-primary">Danh sách sản phẩm</h4>
+  <!-- Category selector: horizontal scrollable tabs (styled like screenshot) -->
+  <div class="category-menu mb-3 position-relative">
+    <div class="category-scroll d-flex gap-3 overflow-auto py-2" id="categoryMenu" role="tablist" aria-label="Chọn loại">
+      <% categories.forEach(cat => { %>
+        <button class="category-btn" data-cat="<%= cat %>"><%= cat %></button>
+      <% }) %>
+    </div>
+    <div class="category-more" aria-hidden="true">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 9l6 6 6-6" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <% categories.slice(1).forEach(cat => { %>
+    <div class="product-category-group mb-4" data-cat-group="<%= cat %>">
+      <h5 class="mb-3 text-danger"><%= cat %></h5>
+      <div class="row g-3">
+        <% products.filter(p => p.category === cat).forEach(product => { %>
+          <div class="col-6 col-md-6 col-lg-4 product-item" data-category="<%= product.category %>">
+            <div class="product-card card h-100 rounded-4 border-0 shadow-sm">
+              <img src="<%= product.image %>" class="card-img-top rounded-4" alt="<%= product.name %>">
+              <div class="card-body">
+                <h5 class="card-title text-primary"><%= product.name %></h5>
+                <p class="card-text small text-muted">Số lượng còn: <b><%= product.stock %></b></p>
+                <p class="card-text fw-bold text-danger">Giá: <%= product.price %> VND</p>
+                <button class="btn btn-success add-to-cart w-100 rounded-3" data-id="<%= product.id %>" data-name="<%= product.name %>" data-price="<%= product.price %>">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-13z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1" fill="#fff"/><circle cx="18" cy="20" r="1" fill="#fff"/></svg>
+                  Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  <% }) %>
+      </div>
+    </div>
+  </main>
+  <nav class="app-bottom-nav navbar fixed-bottom bg-white shadow-sm rounded-top">
+    <div class="container d-flex justify-content-between align-items-center py-2">
+      <a href="/" class="nav-link text-center flex-fill" id="navHome">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M3 12l9-9 9 9v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8z" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="small">Tổng quan</div>
+      </a>
+      <a href="/cart" class="nav-link text-center flex-fill" id="navCart">
+        <span class="position-relative d-inline-block">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-13z" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1" fill="#4F8CFF"/><circle cx="18" cy="20" r="1" fill="#4F8CFF"/></svg>
+          <span id="cartBadge" class="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+        </span>
+        <div class="small">Giỏ hàng</div>
+      </a>
+      <a href="#" class="nav-link text-center flex-fill" id="navMore" data-bs-toggle="offcanvas" data-bs-target="#moreOffcanvas" aria-controls="moreOffcanvas" role="button">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#4F8CFF" stroke-width="2"/><path d="M12 8v4l3 2" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="small">Nhiều hơn</div>
+      </a>
+      <script>
+        // Active menu highlight
+        const path = window.location.pathname;
+        if (path === '/' || path === '/customer') {
+          document.getElementById('navHome').classList.add('active');
+        } else if (path === '/cart') {
+          document.getElementById('navCart').classList.add('active');
+        } else {
+          document.getElementById('navMore').classList.add('active');
+        }
+      </script>
+    </div>
+  </nav>
+
+  <!-- Offcanvas for 'Nhiều hơn' (bottom) -->
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="moreOffcanvas" aria-labelledby="moreOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 id="moreOffcanvasLabel" class="offcanvas-title">Nhiều hơn</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+    </div>
+    <div class="offcanvas-body small">
+      <div class="mb-2">
+        <button id="moreLogoutBtn" class="btn btn-outline-danger w-100 mb-2">Đăng xuất</button>
+        <button id="moreEditInfoBtn" class="btn btn-outline-primary w-100">Chỉnh sửa thông tin</button>
+      </div>
+      <!-- Add more items here if needed -->
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/customer.js"></script>
+</body>
+</html>
