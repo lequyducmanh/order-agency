@@ -129,10 +129,8 @@ body.bg-gradient-primary {
 /* Category menu styling */
 .category-menu {
 	position: relative;
-	border-top-left-radius: 2rem;
-	border-top-right-radius: 2rem;
 	overflow: hidden;
-	box-shadow: 0 2px 16px 0 rgba(79,140,255,0.10), 0 1px 8px 0 rgba(0,0,0,0.04);
+	box-shadow: 0 2px 16px 0 rgba(79,140,255,0.10), 0 0px 0px 0 rgba(0,0,0,0.04);
 	background: rgba(255,255,255,0.85);
 }
 .category-menu .category-scroll {
