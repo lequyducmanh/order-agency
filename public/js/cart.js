@@ -15,21 +15,53 @@ function renderCartItems() {
     const itemTotal = item.qty * parseInt(item.price);
     total += itemTotal;
     const li = document.createElement('li');
-    li.className = 'list-group-item d-flex justify-content-between align-items-center';
-    li.innerHTML = `<span><b>${item.name}</b> x ${item.qty} <span class='text-secondary ms-2'>${item.price} VND</span></span>`;
-    const removeBtn = document.createElement('button');
-    removeBtn.className = 'btn btn-sm btn-danger';
-    removeBtn.textContent = 'X';
-    removeBtn.onclick = () => {
+    li.className = 'list-group-item';
+    li.innerHTML = `
+      <div class="fw-bold mb-1">${item.name}</div>
+      <div class="d-flex justify-content-between align-items-center">
+        <span>
+          <span class="me-2">Số lượng x${item.qty}</span>
+          <span class='text-secondary ms-2'>${Number(item.price).toLocaleString('vi-VN').replace(/,/g, '.')} VND</span>
+        </span>
+        <div class="d-flex align-items-center gap-1">
+          <button class="btn btn-sm btn-outline-secondary btn-decrease">−</button>
+          <button class="btn btn-sm btn-outline-primary btn-increase">+</button>
+          <button class="btn btn-sm btn-danger ms-1">X</button>
+        </div>
+      </div>
+    `;
+    // Tăng số lượng
+    li.querySelector('.btn-increase').onclick = () => {
+      item.qty++;
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      renderCartItems();
+      updateBadge();
+    };
+    // Giảm số lượng
+    li.querySelector('.btn-decrease').onclick = () => {
+      if (item.qty > 1) {
+        item.qty--;
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        renderCartItems();
+        updateBadge();
+      } else {
+        // Nếu giảm về 0 thì xóa luôn
+        cartItems.splice(cartItems.indexOf(item), 1);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        renderCartItems();
+        updateBadge();
+      }
+    };
+    // Xóa sản phẩm
+    li.querySelector('.btn-danger').onclick = () => {
       cartItems.splice(cartItems.indexOf(item), 1);
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
       renderCartItems();
       updateBadge();
     };
-    li.appendChild(removeBtn);
     cartItemsList.appendChild(li);
   });
-  document.getElementById('cartTotal').textContent = cartItems.length > 0 ? `Tổng tiền: ${total} VND` : '';
+  document.getElementById('cartTotal').textContent = cartItems.length > 0 ? `Tổng tiền: ${total.toLocaleString('vi-VN').replace(/,/g, '.')} VND` : '';
   updateBadge();
 }
 function updateBadge() {

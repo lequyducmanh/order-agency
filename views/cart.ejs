@@ -9,25 +9,30 @@
 </head>
 <body class="bg-gradient-primary">
   <header class="app-header shadow-sm rounded-bottom">
-    <div class="d-flex align-items-center justify-content-between px-3 py-2">
-      <div class="d-flex align-items-center gap-2">
+    <div class="px-3 py-2">
+      <div class="d-flex align-items-center gap-2 mb-1">
         <span class="logo-icon">
           <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#4F8CFF"/><path d="M7 17l5-9 5 9" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
-        <span class="fw-bold fs-5 text-primary">Candy Agency</span>
+        <span class="fw-bold fs-5 text-white text-truncate">ĐẠI LÝ BÁNH KẸO - LÊ VĂN LƯƠNG</span>
       </div>
-      <a href="/" class="btn btn-light rounded-circle shadow-sm" title="Quay lại">
-        <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke="#4F8CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <div class="d-flex align-items-center gap-2 mb-1">
+        <span style="color:#fff;">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="#fff"/></svg>
+        </span>
+        <span class="text-white text-truncate">Tầng 4 Diamond Place, 25 Lê Văn Lương, TP. Hồ Chí Minh</span>
+      </div>
     </div>
   </header>
   <main class="container py-3">
     <div class="card shadow-sm rounded-4 p-3 mb-4">
       <h4 class="mb-3 text-primary">Giỏ hàng của bạn</h4>
-      <ul id="cartPageItems" class="list-group mb-2"></ul>
-      <div class="mb-2 d-flex justify-content-between align-items-center">
-        <div class="fw-bold fs-5 text-end" id="cartTotal"></div>
-        <button id="cartSubmitOrderBtn" class="btn btn-primary px-4 py-2 rounded-3">Đặt hàng</button>
+      <div style="max-height: 350px; overflow-y: auto;">
+        <ul id="cartPageItems" class="list-group mb-2"></ul>
+      </div>
+      <div class="cart-total-bar mb-2">
+        <div class="fw-bold" id="cartTotal"></div>
+        <button id="cartSubmitOrderBtn" class="btn btn-primary w-100 mt-2">Đặt hàng</button>
       </div>
       <div id="cartOrderResult" class="mt-2"></div>
     </div>

@@ -74,23 +74,41 @@ function updateBadge() {
     }
   }
 }
-document.querySelectorAll('.add-to-cart').forEach(btn => {
+// Toast notification helper
+function showToast(msg) {
+  const toast = document.getElementById('toastNoti');
+  const toastMsg = document.getElementById('toastNotiMsg');
+  if (!toast || !toastMsg) return;
+  toastMsg.textContent = msg;
+  toast.style.display = '';
+  toast.classList.remove('hide');
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+    toast.classList.add('hide');
+    setTimeout(() => { toast.style.display = 'none'; }, 500);
+  }, 1500);
+}
+
+document.querySelectorAll('.btn-add-to-cart').forEach(btn => {
   btn.addEventListener('click', () => {
     const id = btn.dataset.id;
     const name = btn.dataset.name;
     const price = btn.dataset.price;
-    // reload current cart from localStorage to avoid stale state
     cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
     let item = cartItems.find(i => i.id === id);
     if (item) {
       item.qty++;
+      showToast(`Đã tăng số lượng: ${name} (Tổng: ${item.qty})`);
     } else {
       cartItems.push({ id, name, price, qty: 1 });
+      showToast(`Đã thêm vào giỏ: ${name} (Tổng: 1)`);
     }
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    // only render in-page cart if present
     if (cartItemsList) renderCartItems();
     updateBadge();
+    btn.classList.add('added');
+    setTimeout(() => btn.classList.remove('added'), 1200);
   });
 });
 window.addEventListener('storage', function() {
